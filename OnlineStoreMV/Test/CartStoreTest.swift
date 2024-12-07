@@ -136,12 +136,12 @@ struct CartStoreTest {
 
     @Suite("Removal test", .tags(.product))
     struct RemovingTest {
-        @Test
-        func removeProductFromCart() {
+        @Test(arguments: [(products[0], 4), (products[1], 5), (products[2], 6)])
+        func removeProductFromCart(product: Product, expectedQuantity: Int) {
             let cartItems = [
                 CartItem(
-                    product: products[0],
-                    quantity: 4
+                    product: product,
+                    quantity: expectedQuantity
                 )
             ]
             let cartStore = CartStore(
@@ -151,7 +151,7 @@ struct CartStoreTest {
 
             let expected: [CartItem] = []
 
-            cartStore.removeAllFromCart(product: products[0])
+            cartStore.removeAllFromCart(product: product)
 
             let actual = cartStore.cartItems
 
