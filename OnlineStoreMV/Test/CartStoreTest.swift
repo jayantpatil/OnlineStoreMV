@@ -124,7 +124,7 @@ struct CartStoreTest {
             #expect(expectedQuantity == actualQuantity)
         }
 
-        @Test(.tags(.product))
+        @Test(.tags(.product), .timeLimit(.minutes(1)))
         func testSubstractQuantityFromItemInCartUntilMakeItZero() {
             let cartStore = CartStore(
                 cartItems: cartItems,
