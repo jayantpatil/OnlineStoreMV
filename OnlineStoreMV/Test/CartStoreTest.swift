@@ -9,9 +9,15 @@ import XCTest
 import Testing
 @testable import OnlineStoreMV
 
+extension Tag {
+    @Tag static var price: Self
+    @Tag static var product: Self
+    @Tag static var quantity: Self
+}
+
 @Suite("Cart Store Suite")
 struct CartStoreTest {
-    @Test("Get total amount to pay as string")
+    @Test("Get total amount to pay as string", .tags(.price))
     func totalAmountString() {
         let cartItems = [
             CartItem(
@@ -117,7 +123,7 @@ struct CartStoreTest {
             #expect(expectedQuantity == actualQuantity)
         }
 
-        @Test
+        @Test(.tags(.product))
         func testSubstractQuantityFromItemInCartUntilMakeItZero() {
             let product1 = Product(
                 id: 1,
@@ -179,7 +185,7 @@ struct CartStoreTest {
 
 
 
-    @Suite("Removal test")
+    @Suite("Removal test", .tags(.product))
     struct RemovingTest {
         @Test
         func removeProductFromCart() {
@@ -268,7 +274,7 @@ struct CartStoreTest {
 
     @Suite("Quantity tests")
     struct QuantityTest {
-        @Test
+        @Test(.tags(.quantity))
         func getQuantityFromAProductInCart() {
             let product1 = Product(
                 id: 1,
@@ -295,7 +301,7 @@ struct CartStoreTest {
             #expect(expected == actual)
         }
 
-        @Test
+        @Test(.tags(.quantity))
         func getQuantityFromAProductThatDoesNotExistInCart() {
             let product1 = Product(
                 id: 1,
@@ -331,7 +337,7 @@ struct CartStoreTest {
         }
     }
 
-    @Suite("Add Quantity tests")
+    @Suite("Add Quantity tests", .tags(.quantity))
     struct AddQuantityTest {
         @Test
         func addQuantityFromExistingItemInCart() {
@@ -390,7 +396,7 @@ struct CartStoreTest {
             #expect(expectedQuantity == actualQuantity)
         }
 
-        @Test
+        @Test(.tags(.quantity))
         func addQuantityFromNewItemInCart() {
             let product1 = Product(
                 id: 1,
