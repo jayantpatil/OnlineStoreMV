@@ -90,6 +90,20 @@ struct CartStoreTest {
         #expect(expected == actual, "Actual result is not the same as expected")
     }
 
+    @Test("Get total amount to pay as string making it fail to understand withKnownIssue", .tags(.price))
+    func totalAmountStringFailing() {
+        let cartStore = CartStore(
+            cartItems: cartItems,
+            apiClient: .testSuccess
+        )
+
+        let expected = "$628.9"
+        let actual = cartStore.totalPriceString
+        withKnownIssue("Making it fail") {
+            #expect(expected == actual, "Actual result is not the same as expected")
+        }
+    }
+
     @Suite("Subtracting quantity on cart items")
     struct SubtractingTest {
         @Test
