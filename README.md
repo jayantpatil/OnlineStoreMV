@@ -1,3 +1,6 @@
+Final swift-testing is available on swift-testing branch already but creating this branch for my practice
+From list https://www.youtube.com/watch?v=zXjM1cFUwW4&list=PLHWvYoDHvsOV67md_mU5nMN_HDZK7rEKn 
+
 # OnlineStore made with SwiftUI (Vanilla) and Observation
 
 ## Motivation
