@@ -9,6 +9,12 @@ import XCTest
 import Testing
 @testable import OnlineStoreMV
 
+enum APIVersion {
+    case v1, v2, v3
+}
+
+let apiVersion = APIVersion.v2
+
 extension Tag {
     @Tag static var price: Self
     @Tag static var product: Self
@@ -77,7 +83,8 @@ let cartItems = [
 @Suite("Cart Store Suite")
 struct CartStoreTest {
 
-    @Test("Get total amount to pay as string", .tags(.price))
+
+    @Test("Get total amount to pay as string", .tags(.price), .enabled(if: .v1 == apiVersion))
     func totalAmountString() {
         let cartStore = CartStore(
             cartItems: cartItems,
@@ -90,7 +97,7 @@ struct CartStoreTest {
         #expect(expected == actual, "Actual result is not the same as expected")
     }
 
-    @Test("Get total amount to pay as string making it fail to understand withKnownIssue", .tags(.price))
+    @Test("Get total amount to pay as string making it fail to understand withKnownIssue", .tags(.price), .disabled())
     func totalAmountStringFailing() {
         let cartStore = CartStore(
             cartItems: cartItems,
