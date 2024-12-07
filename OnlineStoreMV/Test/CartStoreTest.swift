@@ -107,13 +107,22 @@ struct CartStoreTest {
     @Suite("Subtracting quantity on cart items")
     struct SubtractingTest {
         @Test
-        func testSubstractQuantityFromItemInCart() {
+        func testSubstractQuantityFromItemInCart() throws {
             let cartStore = CartStore(
                 cartItems: cartItems,
                 apiClient: .testSuccess
             )
 
             let expectedQuantity = 4
+
+            // Checks for condition before proceeding
+            try #require(!cartStore.cartItems.isEmpty, "Cart should not be empty")
+
+            // Checks whether particular error is be thrown
+            // #require(throws: <#T##Error.Type#>, performing: <#T##() async throws -> R#>)
+
+            // Checks value is present and unwraps it for further use
+            //            let element = try #require(item, item should be presnt)
 
             cartStore.removeFromCart(product: products[0])
             cartStore.removeFromCart(product: products[2])
